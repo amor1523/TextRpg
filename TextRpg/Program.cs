@@ -17,21 +17,23 @@
         static void InitialDataSsetting()
         {
             // 캐릭터 정보
-            player = new Character("Chad", "전사", 1, 10, 5, 100, 1500f);
+            player = new Character("Chad", "전사", 1, 10, 5, 100, 300000f);
 
             // 아이템 정보 세팅
-            items = new Item[10];
+            items = new Item[8];
 
-            items[0] = new Item("수련자 갑옷    ", "수련에 도움을 주는 갑옷입니다.", 1, 0, 5, 0, 1000f);
-            items[1] = new Item("무쇠갑옷       ", "무쇠로 만들어져 튼튼한 갑옷입니다.", 1, 0, 5, 0, 1800f);
+            items[0] = new Item("수련자 갑옷", "수련에 도움을 주는 갑옷입니다.", 1, 0, 5, 0, 1000f);
+            items[1] = new Item("무쇠갑옷", "무쇠로 만들어져 튼튼한 갑옷입니다.", 1, 0, 5, 0, 1800f);
             items[2] = new Item("스파르타의 갑옷", "스파르타의 전사들이 사용했다는 전설의 갑옷입니다.", 1, 0, 15, 0, 3500f);
-            items[3] = new Item("낡은 검        ", "쉽게 볼 수 있는 낡은 검입니다.", 0, 2, 0, 0, 300f);
-            items[4] = new Item("청동 도끼      ", "어디선가 사용됐던거 같은 도끼입니다.", 1, 5, 0, 0, 1500f);
-            items[5] = new Item("스파르타의 창  ", "스파르타의 전사들이 사용했다는 전설의 창입니다.", 0, 7, 0, 0, 2700f);
+            items[3] = new Item("개발자의 한이 서린 갑옷", "전설의 개발자가 사용했다는 최강의 갑옷입니다.", 1, 0, 50, 100, 10000f);
+            items[4] = new Item("낡은 검", "쉽게 볼 수 있는 낡은 검입니다.", 0, 2, 0, 0, 300f);
+            items[5] = new Item("청동 도끼", "어디선가 사용됐던거 같은 도끼입니다.", 0, 5, 0, 0, 1500f);
+            items[6] = new Item("스파르타의 창", "스파르타의 전사들이 사용했다는 전설의 창입니다.", 0, 7, 0, 0, 2700f);
+            items[7] = new Item("죽 창", "평등해보이지만 데미지는 평등해보이지 않습니다.", 0, 20, 0, 0, 10000f);
 
             //상점 정보 세팅
             shop = new List<Item>();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 8; i++)
             {
                 shop.Add(items[i]);
             }
@@ -139,12 +141,14 @@
                 if (inventory[i].Equipped == 1)
                 {
                     if (inventory[i].Atk > 0) Console.WriteLine($"- [E]{inventory[i].Name} | 공격력 +{inventory[i].Atk} | {inventory[i].Description}");
+                    else if (inventory[i].Def > 0 && inventory[i].Hp > 0) Console.WriteLine($"-[E]{inventory[i].Name} | 방어력 +{inventory[i].Def} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                     else if (inventory[i].Def > 0) Console.WriteLine($"- [E]{inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"-[E]{inventory[i].Name} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
                 else
                 {
                     if (inventory[i].Atk > 0) Console.WriteLine($"- {inventory[i].Name} | 공격력 +{inventory[i].Atk} | {inventory[i].Description}");
+                    else if (inventory[i].Def > 0 && inventory[i].Hp > 0) Console.WriteLine($"-{inventory[i].Name} | 방어력 +{inventory[i].Def} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                     else if (inventory[i].Def > 0) Console.WriteLine($"- {inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"- {inventory[i].Name} |  체 력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
@@ -184,12 +188,14 @@
                 if (inventory[i].Equipped == 1)
                 {
                     if (inventory[i].Atk > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} | 공격력 +{inventory[i].Atk} | {inventory[i].Description}");
+                    else if (inventory[i].Def > 0 && inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} | 방어력 +{inventory[i].Def} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                     else if (inventory[i].Def > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
                 else
                 {
                     if (inventory[i].Atk > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 공격력 +{inventory[i].Atk} | {inventory[i].Description}");
+                    else if (inventory[i].Def > 0 && inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 방어력 +{inventory[i].Def} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                     else if (inventory[i].Def > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} |  체 력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
@@ -233,12 +239,14 @@
                 if (shop[i].Purchased == 1)
                 {
                     if (shop[i].Atk > 0) Console.WriteLine($"- {shop[i].Name} | 공격력 +{shop[i].Atk} | {shop[i].Description} | {shop[i].Price} G");
+                    else if (shop[i].Def > 0 && shop[i].Hp > 0) Console.WriteLine($"- {shop[i].Name} | 방어력 +{shop[i].Def} |  체력 +{shop[i].Hp} | {shop[i].Description}");
                     else if (shop[i].Def > 0) Console.WriteLine($"- {shop[i].Name} | 방어력 +{shop[i].Def} | {shop[i].Description} | {shop[i].Price} G");
                     else if (shop[i].Hp > 0) Console.WriteLine($"- {shop[i].Name} |  체 력 +{shop[i].Hp} | {shop[i].Description} | {shop[i].Price} G");
                 }
                 else
                 {
                     if (shop[i].Atk > 0) Console.WriteLine($"- {shop[i].Name} | 공격력 +{shop[i].Atk} | {shop[i].Description} | 구매완료");
+                    else if (shop[i].Def > 0 && shop[i].Hp > 0) Console.WriteLine($"- {shop[i].Name} | 방어력 +{shop[i].Def} |  체력 +{shop[i].Hp} | {shop[i].Description} | 구매완료");
                     else if (shop[i].Def > 0) Console.WriteLine($"- {shop[i].Name} | 방어력 +{shop[i].Def} | {shop[i].Description} | 구매완료");
                     else if (shop[i].Hp > 0) Console.WriteLine($"- {shop[i].Name} | 체 력 +{shop[i].Hp} | {shop[i].Description} | 구매완료");
                 }
@@ -285,12 +293,14 @@
                 if (shop[i].Purchased == 1)
                 {
                     if (shop[i].Atk > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 공격력 +{shop[i].Atk} | {shop[i].Description} | {shop[i].Price} G");
+                    else if (shop[i].Def > 0 && shop[i].Hp > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 방어력 +{shop[i].Def} |  체력 +{shop[i].Hp} | {shop[i].Price}");
                     else if (shop[i].Def > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 방어력 +{shop[i].Def} | {shop[i].Description} | {shop[i].Price} G");
                     else if (shop[i].Hp > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} |  체 력 +{shop[i].Hp} | {shop[i].Description} | {shop[i].Price} G");
                 }
                 else
                 {
                     if (shop[i].Atk > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 공격력 +{shop[i].Atk} | {shop[i].Description} | 구매완료");
+                    else if (shop[i].Def > 0 && shop[i].Hp > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 방어력 +{shop[i].Def} |  체력 +{shop[i].Hp} | 구매완료");
                     else if (shop[i].Def > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 방어력 +{shop[i].Def} | {shop[i].Description} | 구매완료");
                     else if (shop[i].Hp > 0) Console.WriteLine($"- {i + 1} {shop[i].Name} | 체 력 +{shop[i].Hp} | {shop[i].Description} | 구매완료");
                 }
@@ -308,19 +318,19 @@
                     DisplayShop();
                     break;
                 default:
-                    if (player.Gold >= shop[input - 1].Price)
+                    if (shop[input - 1].Purchased == 0)
+                    {
+                        Console.WriteLine($"{shop[input - 1].Name} 은(는) 이미 구매한 품목입니다.");
+                        Thread.Sleep(600);
+                        DisplayShopPurchasing();
+                    }
+                    else if (player.Gold >= shop[input - 1].Price)
                     {
                         inventory.Add(shop[input - 1]);
                         player.Gold -= shop[input - 1].Price;
                         shop[input - 1].Purchased -= 1;
                         Console.WriteLine($"{shop[input - 1].Name} 을(를) 구매하였습니다.");
                         Thread.Sleep(300);
-                        DisplayShopPurchasing();
-                    }
-                    else if (shop[input - 1].Purchased == 0)
-                    {
-                        Console.WriteLine($"{shop[input - 1].Name} 은(는) 이미 구매한 품목입니다.");
-                        Thread.Sleep(600);
                         DisplayShopPurchasing();
                     }
                     else
@@ -351,12 +361,14 @@
                 if (inventory[i].Equipped == 1)
                 {
                     if (inventory[i].Atk > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} | 공격력 +{inventory[i].Atk} | {inventory[i].Description}");
+                    else if (inventory[i].Def > 0 && inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} | 방어력 +{shop[i].Def} |  체력 +{shop[i].Hp} | {inventory[i].Description}");
                     else if (inventory[i].Def > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} [E]{inventory[i].Name} |  체력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
                 else
                 {
                     if (inventory[i].Atk > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 공격력 +{inventory[i].Atk} | {inventory[i].Description}");
+                    else if (inventory[i].Def > 0 && inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 방어력 +{shop[i].Def} |  체력 +{shop[i].Hp} | {inventory[i].Description}");
                     else if (inventory[i].Def > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} |  체 력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
