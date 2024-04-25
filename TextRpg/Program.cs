@@ -23,11 +23,11 @@
             items = new Item[10];
 
             items[0] = new Item("수련자 갑옷    ", "수련에 도움을 주는 갑옷입니다.", 1, 0, 5, 0, 1000f);
-            items[1] = new Item("무쇠갑옷       ", "무쇠로 만들어져 튼튼한 갑옷입니다.", 1, 0, 5, 0, 2000f);
+            items[1] = new Item("무쇠갑옷       ", "무쇠로 만들어져 튼튼한 갑옷입니다.", 1, 0, 5, 0, 1800f);
             items[2] = new Item("스파르타의 갑옷", "스파르타의 전사들이 사용했다는 전설의 갑옷입니다.", 1, 0, 15, 0, 3500f);
             items[3] = new Item("낡은 검        ", "쉽게 볼 수 있는 낡은 검입니다.", 0, 2, 0, 0, 300f);
             items[4] = new Item("청동 도끼      ", "어디선가 사용됐던거 같은 도끼입니다.", 1, 5, 0, 0, 1500f);
-            items[5] = new Item("스파르타의 창  ", "스파르타의 전사들이 사용했다는 전설의 창입니다.", 0, 7, 0, 0, 2500f);
+            items[5] = new Item("스파르타의 창  ", "스파르타의 전사들이 사용했다는 전설의 창입니다.", 0, 7, 0, 0, 2700f);
 
             //상점 정보 세팅
             shop = new List<Item>();
@@ -193,15 +193,15 @@
                     else if (inventory[i].Def > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} | 방어력 +{inventory[i].Def} | {inventory[i].Description}");
                     else if (inventory[i].Hp > 0) Console.WriteLine($"- {i + 1} {inventory[i].Name} |  체 력 +{inventory[i].Hp} | {inventory[i].Description}");
                 }
+            }
 
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
 
-                Console.WriteLine();
-                Console.WriteLine("0. 나가기");
+            Console.WriteLine();
+            Console.Write("원하시는 행동을 입력해주세요.\n>> ");
 
-                Console.WriteLine();
-                Console.Write("원하시는 행동을 입력해주세요.\n>> ");
-
-                int input = CheckValidInput(0, inventory.Count);
+            int input = CheckValidInput(0, inventory.Count);
                 switch (input)
                 {
                     case 0:
@@ -210,11 +210,10 @@
                     default:
                         if (inventory[input - 1].Equipped == 0) inventory[input - 1].Equipped += 1;
                         else inventory[input - 1].Equipped -= 1;
-
                         Displayitems();
                         break;
                 }
-            }
+            
         }
 
         static void DisplayShop()
@@ -315,19 +314,19 @@
                         player.Gold -= shop[input - 1].Price;
                         shop[input - 1].Purchased -= 1;
                         Console.WriteLine($"{shop[input - 1].Name} 을(를) 구매하였습니다.");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(300);
                         DisplayShopPurchasing();
                     }
                     else if (shop[input - 1].Purchased == 0)
                     {
                         Console.WriteLine($"{shop[input - 1].Name} 은(는) 이미 구매한 품목입니다.");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(600);
                         DisplayShopPurchasing();
                     }
                     else
                     {
                         Console.WriteLine($"{shop[input - 1].Price - player.Gold} Gold 부족합니다.");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(600);
                         DisplayShopPurchasing();
                     }
                     break;
@@ -376,23 +375,28 @@
                 default:
                     if (inventory[input - 1].Equipped == 0)
                     {
-                        shop[input - 1].Purchased += 1;
+                        for (int i = 0; i < shop.Count; i++)
+                        {
+                            if (inventory[input - 1].Name == shop[i].Name)
+                            {
+                                shop[i].Purchased += 1;
+                            }
+                        }
                         float temp = inventory[input - 1].Price * 0.85f;
                         Console.WriteLine($"{inventory[input - 1].Name} 을(를) 판매하여 {temp} G를 얻었습니다.");
                         player.Gold += inventory[input - 1].Price * 0.85f;
                         inventory.RemoveAt(input - 1);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(600);
                         DisplayShopSelling();
                     }
                     else
                     {
                         Console.WriteLine("장착중인 장비는 판매할 수 없습니다.");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(600);
                         DisplayShopSelling();
                     }
                     break;
             }
-
         }
 
         static void DisplaySaveLoad()
