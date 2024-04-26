@@ -1,6 +1,33 @@
 ﻿namespace TextRpg
 {
     // https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=Red%20Phoenix&text=Your%20text%20here%20 ASCII코드 이쁘게찍기!
+
+    //장착개선 = 단순히 끼고 빼는 로직으로 구현했다면, 이미 장착중인지 확인 / 아이템 부위별 장착 여부를 딕셔너리로 저장하면 좋을듯
+    //던전 입장 기능 추가 = 단순 로직 구현
+    //휴식 기능 = 기능 자체는 복잡하지 않음. HP가 100만 넘지 않도록
+    //레벨업 기능 = 단순 로직 구현, Player의 필드를 조금 변경
+    
+    //저장관련 Newtonsoft.Json의 JsonConver 클래스를 활용해서 구현( 도구 - Nuget 패키지 관리자 - 패키지 관리자 콘솔)
+    //샘플코드
+    //using Newtonsoft.Json;
+    //using System.IO;
+
+    //static void SaveItemsToJson(string filePath)
+    //{
+    //    string json = JsonConvert.SerializeObject(items, Formatting.Indented);
+    //    filePath.WriteAllText(filePath, json); // JSON 문자열을 파일로 저장
+    //    }
+
+    //static void LoadItemsFromJson(string filePath)
+    //{
+    //    // 파일로부터 JSON 문자열을 읽기
+    //    string json = filePath.ReadAllText(filePath);
+
+    //    //JSON 문자열로부터 아이템 리스트를 역직렬화
+    //    items = JsonConvert.DeserializeObject<Item[]>(json);
+    //}
+
+
     internal class Program
     {
         private static Character player;
